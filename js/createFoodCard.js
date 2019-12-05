@@ -14,6 +14,12 @@ function createNodeTag(tag, className, text, id, img) {
   return newTag;
 };
 
+function appendElements(parentNode, ...rest) {
+  rest.forEach(childNode => {
+    parentNode.appendChild(childNode)
+  });
+};
+
 function createFoodCard(foodObj) {
   const classNames = {
     card: 'food__card',
@@ -49,17 +55,10 @@ function createFoodCard(foodObj) {
     newIngredientsList.appendChild(newIngredient);
   });
 
-  newCardContainer.appendChild(newFoodImage);
-  newCardContainer.appendChild(newFoodTitle);
-  newCardContainer.appendChild(newFoodDescription);
-  newCardContainer.appendChild(newIngredientsList);
-  newCardContainer.appendChild(newFoodPrice);
-  newCardContainer.appendChild(newAddButton);
-
-
+  appendElements(newCardContainer, newFoodImage, newFoodTitle, newFoodDescription, newIngredientsList, newFoodPrice, newAddButton);
 
   return newCardContainer;
 
-}
+};
 
 export { createFoodCard };
