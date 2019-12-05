@@ -2,7 +2,7 @@ import { mockFoodData } from './fixtures/mockFoodData.js';
 import { createFoodCard } from '../js/createFoodCard.js';
 
 describe('test createFoodCard meth', () => {
-  test('it returns a new li with correct food object info', () => {
+  test('it returns card with all the info', () => {
     const foodObject = mockFoodData[0];
 
     const result = createFoodCard(foodObject);
@@ -31,4 +31,14 @@ describe('test createFoodCard meth', () => {
 
     expect(newButton.tagName).toBe('BUTTON');
   });
-});
+
+  test('don\'t create card if the object is not provided', () => {
+    
+    expect(() => {
+      createFoodCard();
+    }).toThrow();
+  });
+
+  
+  });
+
