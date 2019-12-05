@@ -30,6 +30,16 @@ function createFoodCard(foodObj) {
 
   const newIngredientsList = document.createElement('ul');
   newIngredientsList.classList.add('food__ingredients-list');
+
+  const newFoodPrice = document.createElement('p');
+  newFoodPrice.classList.add('food__price');
+  const newFoodPriceText = document.createTextNode(price);
+  newFoodPrice.appendChild(newFoodPriceText);
+
+  const newAddButton = document.createElement('button');
+  newAddButton.classList.add('food__add-button');
+  const newButtonText = document.createTextNode('+');
+  newAddButton.appendChild(newButtonText);
   
   ingredients.forEach(ingredient => {
     const newIngredient = document.createElement('li');
@@ -45,6 +55,8 @@ function createFoodCard(foodObj) {
   newCardContainer.appendChild(newFoodTitle);
   newCardContainer.appendChild(newFoodDescription);
   newCardContainer.appendChild(newIngredientsList);
+  newCardContainer.appendChild(newFoodPrice);
+  newCardContainer.appendChild(newAddButton);
 
 
 

@@ -11,6 +11,9 @@ describe('test createFoodCard meth', () => {
     const newfoodTitle = result.querySelector('h3');
     const newFoodDescription = result.querySelector('.food__description');
     const newFoodIngredientsList = result.querySelector('.food__ingredients-list');
+    const newFoodPrice = result.querySelector('.food__price');
+    const priceNumber = parseFloat(newFoodPrice.textContent);
+    const newButton = result.querySelector('.food__add-button');
 
     expect(result.tagName).toBe('LI');
     expect(result.id).toBe(foodObject.id);
@@ -22,5 +25,10 @@ describe('test createFoodCard meth', () => {
     expect(newFoodDescription.textContent).toBe(foodObject.description);
 
     expect(newFoodIngredientsList.tagName).toBe('UL');
+
+    expect(newFoodPrice.tagName).toBe('P');
+    expect(priceNumber).toBe(foodObject.price);
+
+    expect(newButton.tagName).toBe('BUTTON');
   });
 });

@@ -2,10 +2,11 @@ import { mockFoodData } from './fixtures/mockFoodData.js';
 import { getFoodsData } from '../js/getFoodsData.js';
 
 describe('testing api', () => {
-  const ENDPOINT = './foodData.json';
+  const ENDPOINT = '../js/service/foodData.json';
 
   beforeEach(() => {
     fetch.resetMocks();
+
   });
 
   test('it calls foodData.json with the rigth url', () => {
@@ -31,7 +32,7 @@ describe('testing api', () => {
     expect(result).toEqual(error);
   });
 
-  test('it calls GibliApi and returns data', async () => {
+  test('it calls foodData and returns data', async () => {
     fetch.mockResponseOnce(JSON.stringify(mockFoodData));
 
     const result = await getFoodsData(ENDPOINT);
