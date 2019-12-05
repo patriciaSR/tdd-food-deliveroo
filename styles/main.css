@@ -17,3 +17,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.food__image {
+  width: 200px;
+}

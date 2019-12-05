@@ -33,12 +33,9 @@ describe('test createFoodCard meth', () => {
   });
 
   test('don\'t create card if the object is not provided', () => {
-    
     expect(() => {
       createFoodCard();
     }).toThrow();
   });
-
-  
   });
 

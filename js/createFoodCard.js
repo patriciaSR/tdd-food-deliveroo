@@ -29,8 +29,8 @@ function createFoodCard(foodObj) {
     ingredientsItem: 'ingredients-list__item',
     ingredientsList: 'food__ingredients-list',
     price: 'food__price',
-    button: 'food__add-button'
-  }
+    button: 'food__add-button',
+  };
 
   const {
     id,
@@ -48,10 +48,10 @@ function createFoodCard(foodObj) {
   const newIngredientsList = createNodeTag('ul', classNames.ingredientsList);
   const newFoodPrice = createNodeTag('p', classNames.price, price);
   const newAddButton = createNodeTag('button', classNames.button, '+');
-  
-  ingredients.forEach(ingredient => {
+
+  ingredients.forEach((ingredient) => {
     const newIngredient = createNodeTag('li', classNames.ingredientsItem, ingredient);
-    
+
     newIngredientsList.appendChild(newIngredient);
   });
 
