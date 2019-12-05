@@ -13,6 +13,16 @@ describe('test addToCartTest method', () => {
     expect(counter).toBe(2);
   });
 
+  // test('it gets the info from the card', () => {
+  //   const mockEvent = {
+  //     id: '1a'
+  //   };
+
+  //   addToCart(mockEvent);
+
+  //   expect
+  // })
+
   // test('don\'t create new li without node argument', () => {
   //   expect(() => {
   //     createFoodList();
