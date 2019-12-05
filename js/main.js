@@ -1,3 +1,7 @@
 'use strict';
 
-console.log('ready :)');
+import { getFoodsData } from "./getFoodsData.js";
+
+ENDPOINT = "./foodData.json";
+
+getFoodsData(ENDPOINT);
