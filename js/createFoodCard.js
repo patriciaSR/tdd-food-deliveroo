@@ -1,24 +1,28 @@
+import { addToCart } from './addToCart.js';
+
 function createNodeTag(tag, className, text, id, img) {
   const newTag = document.createElement(tag);
   newTag.classList.add(className);
   const newText = document.createTextNode(text);
   newTag.appendChild(newText);
-  if(id) {
+
+  if (id) {
     newTag.id = id;
   }
-  if(img) {
-    newTag.src = img
-    newTag.alt = text
+
+  if (img) {
+    newTag.src = img;
+    newTag.alt = text;
   }
 
   return newTag;
-};
+}
 
 function appendElements(parentNode, ...rest) {
-  rest.forEach(childNode => {
-    parentNode.appendChild(childNode)
+  rest.forEach((childNode) => {
+    parentNode.appendChild(childNode);
   });
-};
+}
 
 function createFoodCard(foodObj) {
   const classNames = {
@@ -38,7 +42,7 @@ function createFoodCard(foodObj) {
     price,
     description,
     image,
-    ingredients
+    ingredients,
   } = foodObj;
 
   const newCardContainer = createNodeTag('li', classNames.card, '', id);
@@ -49,6 +53,8 @@ function createFoodCard(foodObj) {
   const newFoodPrice = createNodeTag('p', classNames.price, price);
   const newAddButton = createNodeTag('button', classNames.button, '+');
 
+  newAddButton.addEventListener('click', addToCart);
+
   ingredients.forEach((ingredient) => {
     const newIngredient = createNodeTag('li', classNames.ingredientsItem, ingredient);
 
@@ -58,7 +64,6 @@ function createFoodCard(foodObj) {
   appendElements(newCardContainer, newFoodImage, newFoodTitle, newFoodDescription, newIngredientsList, newFoodPrice, newAddButton);
 
   return newCardContainer;
-
-};
+}
 
 export { createFoodCard };
