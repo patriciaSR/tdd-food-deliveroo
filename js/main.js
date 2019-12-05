@@ -2,6 +2,6 @@
 
 import { getFoodsData } from "./getFoodsData.js";
 
-ENDPOINT = "./foodData.json";
+const ENDPOINT = "js/service/foodData.json";
 
 getFoodsData(ENDPOINT);
