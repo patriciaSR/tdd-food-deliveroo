@@ -1,4 +1,4 @@
-const moockFoodData = [
+const mockFoodData = [
   {
       "id": "1a",
       "name": "Hamburguesa clásica",
@@ -73,4 +73,4 @@ const moockFoodData = [
 }
 ]
 
-export { moockFoodData };
+export { mockFoodData };

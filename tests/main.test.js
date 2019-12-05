@@ -1,4 +1,4 @@
-import { mockFoodData, moockFoodData } from './fixtures/mockFoodData.js';
+import { mockFoodData } from './fixtures/mockFoodData.js';
 import { getFoodsData } from '../js/getFoodsData.js';
 
 describe('testing api', () => {
@@ -32,11 +32,11 @@ describe('testing api', () => {
   });
 
   test('it calls GibliApi and returns data', async () => {
-    fetch.mockResponseOnce(JSON.stringify(moockFoodData));
+    fetch.mockResponseOnce(JSON.stringify(mockFoodData));
 
     const result = await getFoodsData(ENDPOINT);
 
-    expect(result).toEqual(moockFoodData);
+    expect(result).toEqual(mockFoodData);
 
   });
 });
