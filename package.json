@@ -1,0 +1,38 @@
+{
+  "name": "tdd-food-deliveroo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "foodData.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0"
+  },
+  "devDependencies": {
+    "jest-fetch-mock": "^2.1.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "test:coverage": "jest --collect-coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patriciaSR/tdd-food-deliveroo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patriciaSR/tdd-food-deliveroo/issues"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
+  },
+  "homepage": "https://github.com/patriciaSR/tdd-food-deliveroo#readme"
+}
