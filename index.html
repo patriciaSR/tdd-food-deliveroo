@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,28 @@
   <title>TDD-Restaurantes de comida</title>
   <link rel="stylesheet" href="styles/main.css">
 </head>
+
 <body>
-  <header>
-    <h1 class="header__title">Hello Food</h1>
+  <header class="header">
+    <img class="header__img" src="images/food.png" alt="food logo page">
+    <h1 class="header__title">De la cocina a tu salón</h1>
   </header>
-  
+  <main class="main">
+    <section class="restaurant">
+      <h2 class="restaurant__title">La cocina de Paquita</h2>
+      <ul class="restaurant__food-list"></ul>
+    </section>
+    <section clas="shopping-cart">
+      <h2 class="shopping-cart__title">Tu lista de la compra:</h2>
+      <ul class="shopping-cart__list"></ul>
+      <p class="shopping-cart__iva">+21% iva</p>
+      <p class="shopping-cart__total-price">Total: <span>0,00€</span></p>
+
+    </section>
+
+  </main>
+
   <script src="js/main.js" type="module"></script>
 </body>
+
 </html>
