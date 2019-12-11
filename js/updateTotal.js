@@ -9,7 +9,7 @@ function updateTotal(price, cart, action) {
     const totalIva = cart.total * IVA;
 
     const textTotal = document.querySelector('span');
-    textTotal.innerHTML = cart.total + totalIva;
+    textTotal.innerHTML = `${parseFloat(cart.total + totalIva).toFixed(2)}€`;
   } else {
     throw new Error('Not a valid format');
   }

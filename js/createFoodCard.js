@@ -3,7 +3,7 @@ import { foodData} from './main.js';
 
 const cart = {
   products: [],
-  total: 0
+  total: 0,
 };
 
 function createNodeTag(tag, className, text, id, img) {
@@ -55,8 +55,8 @@ function createFoodCard(foodObj) {
   const newFoodImage = createNodeTag('img', classNames.image, name, null, image);
   const newFoodTitle = createNodeTag('h3', classNames.title, name);
   const newFoodDescription = createNodeTag('p', classNames.description, description);
-  const newIngredientsList = createNodeTag('ul', classNames.ingredientsList);
-  const newFoodPrice = createNodeTag('p', classNames.price, price);
+  const newIngredientsList = createNodeTag('ul', classNames.ingredientsList, '');
+  const newFoodPrice = createNodeTag('p', classNames.price, `${price}€`);
   const newAddButton = createNodeTag('button', classNames.button, '+');
 
   newAddButton.addEventListener('click', () => {
