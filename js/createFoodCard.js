@@ -1,7 +1,10 @@
 import { addToCart } from './addToCart.js';
 import { foodData} from './main.js';
 
-let cartData = [];
+const cart = {
+  products: [],
+  total: 0
+};
 
 function createNodeTag(tag, className, text, id, img) {
   const newTag = document.createElement(tag);
@@ -57,7 +60,7 @@ function createFoodCard(foodObj) {
   const newAddButton = createNodeTag('button', classNames.button, '+');
 
   newAddButton.addEventListener('click', () => {
-    addToCart(event, foodData, cartData);
+    addToCart(event, foodData, cart);
   });
 
   ingredients.forEach((ingredient) => {
@@ -71,4 +74,4 @@ function createFoodCard(foodObj) {
   return newCardContainer;
 }
 
-export { createFoodCard, createNodeTag, cartData };
+export { createFoodCard, createNodeTag };

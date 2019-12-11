@@ -1,16 +1,9 @@
 import { createNodeTag } from './createFoodCard.js';
+import { updateTotal } from './updateTotal.js';
 
-function updateCounterFood(id, action, cartArr) {
+function updateCounterFood(id, action, cart) {
   const cartList = document.querySelector('ol');
-  const foodsInCart = cartList.querySelectorAll('li');
-
-  let selectedFood;
-  foodsInCart.forEach((food) => {
-    if (food.id === id) {
-      selectedFood = food;
-      return selectedFood;
-    }
-  });
+  const selectedFood = cartList.querySelector(`li#${id}`);
 
   if (selectedFood) {
     const selectedCounterInCart = selectedFood.querySelector('.food__counter');
@@ -19,20 +12,20 @@ function updateCounterFood(id, action, cartArr) {
     if (action === 'sum') {
       selectedCounterValue++;
     } else {
-      selectedCounterValue--
+      selectedCounterValue--;
     }
 
     if (selectedCounterValue !== 0) {
       selectedCounterInCart.textContent = selectedCounterValue;
     } else {
       selectedFood.remove();
-      const indexFood = cartArr.findIndex((food) => food === selectedFood.id);
-      cartArr.splice(indexFood, 1);
+      const indexFood = cart.products.findIndex((food) => food === selectedFood.id);
+      cart.products.splice(indexFood, 1);
     }
   }
 }
 
-function printFoodInCart(element, cartArr) {
+function printFoodInCart(element, foodItem, cart) {
   const newCartElement = element.cloneNode(true);
   const addToCartBtn = newCartElement.querySelector('button');
   addToCartBtn.remove();
@@ -42,11 +35,13 @@ function printFoodInCart(element, cartArr) {
   const newRemoveBtn = createNodeTag('button', 'food__remove-btn', '-');
 
   newAddBtn.addEventListener('click', () => {
-    updateCounterFood(element.id, 'sum', cartArr);
+    updateCounterFood(element.id, 'sum', cart);
+    updateTotal(foodItem.price, cart, 'sum');
   });
 
   newRemoveBtn.addEventListener('click', () => {
-    updateCounterFood(element.id, 'rest', cartArr);
+    updateCounterFood(element.id, 'rest', cart);
+    updateTotal(foodItem.price, cart);
   });
 
   newCartElement.appendChild(newCounter);

@@ -2,20 +2,20 @@ import { findFoodInCart } from './findFoodInCart.js';
 import { updateTotal } from './updateTotal.js';
 import { printFoodInCart, updateCounterFood } from './updateCart.js';
 
-function addToCart(e, foods, cartArr = []) {
+function addToCart(e, foods, cart) {
   const element = e.target.parentElement;
   const foodItem = foods.find((food) => food.id === element.id);
 
-  const foodIsIncluded = findFoodInCart(element.id, cartArr);
+  const foodIsIncluded = findFoodInCart(element.id, cart.products);
 
   if (foodIsIncluded) {
-    updateCounterFood(element.id, 'sum', cartArr);
+    updateCounterFood(element.id, 'sum', cart);
   } else {
-    printFoodInCart(element, cartArr);
-    cartArr.push(element.id);
+    printFoodInCart(element, foodItem, cart);
+    cart.products.push(element.id);
   }
 
-  updateTotal(foodItem.price);
+  updateTotal(foodItem.price, cart, 'sum');
 }
 
 export { addToCart };

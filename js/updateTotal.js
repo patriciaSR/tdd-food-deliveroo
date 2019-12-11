@@ -1,13 +1,16 @@
-function updateTotal(price, total, action) {
+function updateTotal(price, cart, action) {
   const IVA = 0.21;
   if (typeof price === 'number') {
     if (action === 'sum') {
-      total += price;
+      cart.total += price;
     } else {
-      total -= price;
+      cart.total -= price;
     }
-    total *= IVA;
-    return Math.abs(total);
+    const totalIva = cart.total * IVA;
+
+    const textTotal = document.querySelector('span');
+    textTotal.innerHTML = cart.total + totalIva;
+    return Math.abs(cart.total);
   }
 
   throw new Error('Not a valid format');

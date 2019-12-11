@@ -1,6 +1,6 @@
 [
   {
-      "id": "1a",
+      "id": "a",
       "name": "Hamburguesa clásica",
       "price": 13.5,
       "description": "Carne de ternera tierna con un toque de mostaza",
@@ -15,7 +15,7 @@
       ]
   },
   {
-      "id": "2b",
+      "id": "b",
       "name": "Cocido madrileño",
       "price": 17.5,
       "description": "La comida perfecta para el invierno",
@@ -30,7 +30,7 @@
       ]
   },
   {
-      "id": "3c",
+      "id": "c",
       "name": "Espaguetis",
       "price": 10,
       "description": "Con todo el sabor de italia directo a tu casa",
@@ -44,7 +44,7 @@
       ]
   },
   {
-      "id": "4d",
+      "id": "d",
       "name": "Pizza",
       "price": 8.30,
       "description": "Con todo el sabor de italia directo a tu casa",
@@ -58,7 +58,7 @@
       ]
   },
   {
-    "id": "5d",
+    "id": "d",
     "name": "Tortilla",
     "price": 6.30,
     "description": "Tortilla de cebolla estilo tradicional",
