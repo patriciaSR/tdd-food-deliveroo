@@ -6,7 +6,6 @@ describe('testing api', () => {
 
   beforeEach(() => {
     fetch.resetMocks();
-
   });
 
   test('it calls foodData.json with the rigth url', () => {

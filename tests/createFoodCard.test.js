@@ -37,5 +37,4 @@ describe('test createFoodCard meth', () => {
       createFoodCard();
     }).toThrow();
   });
-  });
-
+});
