@@ -10,10 +10,9 @@ function updateTotal(price, cart, action) {
 
     const textTotal = document.querySelector('span');
     textTotal.innerHTML = cart.total + totalIva;
-    return Math.abs(cart.total);
+  } else {
+    throw new Error('Not a valid format');
   }
-
-  throw new Error('Not a valid format');
 }
 
 export { updateTotal };

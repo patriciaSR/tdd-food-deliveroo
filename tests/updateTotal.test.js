@@ -1,36 +1,37 @@
 import { updateTotal } from '../js/updateTotal.js';
 
+function getTotal() {
+  return parseFloat(document.querySelector('span').textContent);
+}
 
 describe('updateTotal method', () => {
   const IVA = 0.21;
-  const mockPrice = 10;
-  const mockPrice2 = -20;
-  const total = 50;
 
-  test('it should add and update the total count of the checkout list', () => {
-    const expected = (total + mockPrice) * IVA;
-    const result = updateTotal(mockPrice, total, 'sum');
-
-    expect(result).toBe(expected);
+  beforeEach(() => {
+    document.body.innerHTML = '<span></span>';
   });
 
-  test('it should add and update the total count of the checkout list', () => {
-    const expected = (total - mockPrice) * IVA;
-    const result = updateTotal(mockPrice, total, 'rest');
+  test('it renders the total with IVA if the cart is empty', () => {
+    updateTotal(10, { total: 0 }, 'sum');
 
-    expect(result).toBe(expected);
+    expect(getTotal()).toBe(12.1);
   });
 
-  test('it should not allow negative numbers', () => {
-    const expected = (total + mockPrice2) * IVA;
-    const result = updateTotal(mockPrice2, total, 'sum');
+  test('it renders the total with IVA if the cart is not empty', () => {
+    updateTotal(10, { total: 10 }, 'sum');
 
-    expect(result).toBe(expected);
+    expect(getTotal()).toBe(24.2);
+  });
+
+  test('it renders the total with IVA if an amount is substracted', () => {
+    updateTotal(10, { total: 10 });
+
+    expect(getTotal()).toBe(0);
   });
 
   test('it should only allow numbers', () => {
     expect(() => {
-      updateTotal('seventeen', total, 'sum');
+      updateTotal('seventeen', { total: 0 }, 'sum');
     }).toThrowError(new Error('Not a valid format'));
   });
 });

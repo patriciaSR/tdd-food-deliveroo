@@ -15,7 +15,9 @@ function addToCart(e, foods, cart) {
     cart.products.push(element.id);
   }
 
-  updateTotal(foodItem.price, cart, 'sum');
+  if (foodItem) {
+    updateTotal(foodItem.price, cart, 'sum');
+  }
 }
 
 export { addToCart };

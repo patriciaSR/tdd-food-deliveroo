@@ -1,5 +1,4 @@
 import { addToCart } from '../js/addToCart.js';
-import { mockFoodData } from './fixtures/mockFoodData.js';
 import { findFoodInCart } from '../js/findFoodInCart.js';
 import { printFoodInCart, updateCounterFood } from '../js/updateCart.js';
 
@@ -7,69 +6,98 @@ import * as updateTotalModule from '../js/updateTotal.js';
 import * as findFood from '../js/findFoodInCart.js';
 import * as updateCartModule from '../js/updateCart.js';
 
-const idArray = ["1a", "2b", "3c", "4b", "5d"];
+const idArray = ["a", "b", "c", "d", "e"];
+
+function prepareDOM() {
+  const listElements = idArray.map((id) => `
+    <li id ="${id}">
+      <button>Click me!</button>
+      <p class="food__counter">2</p>
+    </li>
+  `).join('');
+
+  document.body.innerHTML = `
+    <span></span>
+    <ol class="shopping-cart__list">${listElements}</ol>
+  `;
+}
 
 describe('test addToCart method', () => {
-  beforeEach(() => {
-    document.body.innerHTML = `<ol class="shopping-cart__list">
-      <li id ="1a">
-        <p class="food__counter">1</p>
-      </li>
-    </ol>`;
-  });
-  const newLi = document.createElement('li');
-  newLi.id = '1a';
-  const newBtn = document.createElement('button');
-  newLi.appendChild(newBtn);
+  let mockEvent;
 
-  const mockEvent = {
-    target: {
-      parentElement: newLi,
-    },
-    price: 13.5,
-  };
+  beforeEach(() => {
+    prepareDOM();
+
+    mockEvent = {
+      target: {
+        parentElement: document.querySelector(`li#${idArray[0]}`),
+      },
+      price: 13.5,
+    };
+  });
 
   test('should recieve an event and get the object id', () => {
     const spyfindFoodFn = jest.spyOn(findFood, 'findFoodInCart');
+    const id = idArray[0];
+    const mockFoodData = [{
+      id,
+      price: 13.5,
+    }];
+    const mockCart = {
+      products: [id],
+      total: 0,
+    };
 
-    addToCart(mockEvent, mockFoodData);
+    addToCart(mockEvent, mockFoodData, mockCart);
 
     expect(spyfindFoodFn).toHaveBeenCalled();
-    expect(spyfindFoodFn).toHaveBeenCalledWith('1a', expect.any(Array));
+    expect(spyfindFoodFn).toHaveBeenCalledWith(id, mockCart.products);
   });
 
   test('should update price when called', () => {
+    const id = idArray[0];
+    const mockFoodData = [{
+      id,
+      price: 13.5,
+    }];
+    const mockCart = {
+      products: [id],
+      total: 0,
+    };
     const spyUpdateTotalFn = jest.spyOn(updateTotalModule, 'updateTotal');
 
-    addToCart(mockEvent, mockFoodData);
+    addToCart(mockEvent, mockFoodData, mockCart);
 
     expect(spyUpdateTotalFn).toHaveBeenCalled();
-    expect(spyUpdateTotalFn).toHaveBeenCalledWith(mockEvent.price);
+    expect(spyUpdateTotalFn).toHaveBeenCalledWith(mockEvent.price, mockCart, 'sum');
   });
 
   test('shoud check if the printFoodInCart has been called when item is not on cartArray', () => {
+    const id = idArray[0];
+    const mockFoodData = [{
+      id: 'dddd',
+      price: 13.5,
+    }];
     const spyPrintFoodInCart = jest.spyOn(updateCartModule, 'printFoodInCart');
+    const mockCart = {
+      products: [id],
+      total: 0,
+    };
 
-    const mockArray = ['1b'];
+    addToCart(mockEvent, mockFoodData, mockCart);
 
-    addToCart(mockEvent, mockFoodData, mockArray);
-
-    expect(spyPrintFoodInCart).toHaveBeenCalled();
-    expect(spyPrintFoodInCart).toHaveBeenCalledWith(expect.any(Node), mockArray);
+    expect(spyPrintFoodInCart).not.toHaveBeenCalled();
   });
 });
 
 describe('findFoodInCart method', () => {
   beforeEach(() => {
-    document.body.innerHTML = `<ol class="shopping-cart__list">
-      <li id ="1a">
-        <p class="food__counter">1</p>
-      </li>
-    </ol>`;
+    prepareDOM();
   });
 
   test('if ID is in the cart it returns true', () => {
-    const result = findFoodInCart('1a', idArray);
+    const id = idArray[0];
+    const result = findFoodInCart(id, idArray);
 
     expect(result).toBeTruthy();
   });
@@ -83,8 +111,7 @@ describe('findFoodInCart method', () => {
 
 describe('printFoodInCart method', () => {
   beforeEach(() => {
-    document.body.innerHTML = `<ol class="shopping-cart__list">
-    </ol>`;
+    prepareDOM();
   });
 
   const mockedListElement = document.createElement('li');
@@ -108,39 +135,41 @@ describe('printFoodInCart method', () => {
 
     expect(addBtn.textContent).toBe('+');
     expect(removeBtn.textContent).toBe('-');
-    expect(counter.textContent).toBe('1');
+    expect(counter.textContent).toBe('2');
   });
 });
 
 describe('updateCounter method', () => {
   beforeEach(() => {
-    document.body.innerHTML = `<ol class="shopping-cart__list">
-    <li id ="1a">
-      <p class="food__counter">2</p>
-    </li>
-  </ol>`;
+    prepareDOM();
   });
 
   test('it adds 1 to counter text', () => {
-    updateCounterFood('1a', 'sum');
+    const id = idArray[0];
+    updateCounterFood(id, 'sum');
     const newCounter = document.querySelector('.food__counter');
 
     expect(newCounter.textContent).toBe('3');
   });
 
   test('it removes 1 to counter text', () => {
-    updateCounterFood('1a', 'rest');
+    const id = idArray[0];
+    updateCounterFood(id, 'rest');
     const newCounter = document.querySelector('.food__counter');
 
     expect(newCounter.textContent).toBe('1');
   });
 
   test('it removes element in cart if counter text is cero', () => {
-    const mockArr = ['1a'];
-    updateCounterFood('1a', 'rest', mockArr);
-    updateCounterFood('1a', 'rest', mockArr);
+    const id = idArray[0];
+    const mockCart = {
+      products: [id],
+      total: 0,
+    };
+    updateCounterFood(id, 'rest', mockCart);
+    updateCounterFood(id, 'rest', mockCart);
 
-    const cartListItem = document.getElementById('1a');
+    const cartListItem = document.getElementById(id);
 
     expect(cartListItem).toBe(null);
   });
