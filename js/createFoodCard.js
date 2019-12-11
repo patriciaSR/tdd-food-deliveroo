@@ -66,4 +66,4 @@ function createFoodCard(foodObj) {
   return newCardContainer;
 }
 
-export { createFoodCard };
+export { createFoodCard, createNodeTag };
