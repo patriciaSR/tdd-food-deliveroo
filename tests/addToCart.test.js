@@ -1,31 +1,31 @@
-import { addToCart, counter } from '../js/addToCart.js';
+import { addToCart } from '../js/addToCart.js';
+import { mockFoodData } from './fixtures/mockFoodData.js';
+
+
+import * as updateTotalModule from '../js/updateTotal.js';
+import * as findFood from '../js/findFoodInCart.js';
 
 describe('test addToCartTest method', () => {
-  test('it adds ++ to counter', () => {
-    document.body.innerHTML = '<ol class="shopping-cart__list"></ol>';
+  const mockEvent = mockFoodData[0];
+  
+  test('should recieve an event and get the object id', () => {
+    
+    const spyFindFoodFn = jest.spyOn(findFood, 'findFoodInCart');
 
-    addToCart();
+    addToCart(mockEvent, mockFoodData);
 
-    expect(counter).toBe(1);
+    expect(spyFindFoodFn).toHaveBeenCalled();
+    expect(spyFindFoodFn).toHaveBeenCalledWith(mockEvent.id);
 
-    addToCart();
-
-    expect(counter).toBe(2);
   });
 
-  // test('it gets the info from the card', () => {
-  //   const mockEvent = {
-  //     id: '1a'
-  //   };
+  test('should update price when called', () => {    
+    const spyUpdateTotalFn = jest.spyOn(updateTotalModule, 'updateTotal');
 
-  //   addToCart(mockEvent);
+    addToCart(mockEvent, mockFoodData);
 
-  //   expect
-  // })
-
-  // test('don\'t create new li without node argument', () => {
-  //   expect(() => {
-  //     createFoodList();
-  //   }).toThrow();
-  // });
+    expect(spyUpdateTotalFn).toHaveBeenCalled();
+    expect(spyUpdateTotalFn).toHaveBeenCalledWith(mockEvent.price);
+  }); 
+  
 });

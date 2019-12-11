@@ -1,9 +1,12 @@
-let counter = 0;
+import { findFoodInCart } from './findFoodInCart.js';
+import { updateTotal } from './updateTotal.js';
 
-function addToCart() {
-  counter += 1;
+function addToCart(e, foods) {
+ const element = e;
+ const foodItem = foods.find(food => food.id === element.id);
 
-  return counter;
+ findFoodInCart(element.id);
+ updateTotal(foodItem.price);
 }
 
-export { addToCart, counter };
+export { addToCart };

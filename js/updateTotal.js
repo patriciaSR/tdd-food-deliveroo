@@ -1,4 +1,5 @@
 
+
 function updateTotal(price, total, action){
     const IVA = 0.21;
     if(typeof price === 'number') {
