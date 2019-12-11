@@ -3,14 +3,13 @@ import { mockFoodData } from './fixtures/mockFoodData.js';
 import { findFoodInCart } from '../js/findFoodInCart.js';
 import { printFoodInCart, updateCounterFood } from '../js/updateCart.js';
 
-
 import * as updateTotalModule from '../js/updateTotal.js';
 import * as findFood from '../js/findFoodInCart.js';
 import * as updateCartModule from '../js/updateCart.js';
 
 const idArray = ["1a", "2b", "3c", "4b", "5d"];
 
-describe('test addToCartTest method', () => {
+describe('test addToCart method', () => {
   beforeEach(() => {
     document.body.innerHTML = `<ol class="shopping-cart__list">
       <li id ="1a">
@@ -18,16 +17,25 @@ describe('test addToCartTest method', () => {
       </li>
     </ol>`;
   });
+  const newLi = document.createElement('li');
+  newLi.id = '1a';
+  const newBtn = document.createElement('button');
+  newLi.appendChild(newBtn);
 
-  const mockEvent = mockFoodData[0];
+  const mockEvent = {
+    target: {
+      parentElement: newLi,
+    },
+    price: 13.5,
+  };
 
   test('should recieve an event and get the object id', () => {
-    const spyFindFoodFn = jest.spyOn(findFood, 'findFoodInCart');
+    const spyfindFoodFn = jest.spyOn(findFood, 'findFoodInCart');
 
     addToCart(mockEvent, mockFoodData);
 
-    expect(spyFindFoodFn).toHaveBeenCalled();
-    expect(spyFindFoodFn).toHaveBeenCalledWith(mockEvent.id, expect.any(Array));
+    expect(spyfindFoodFn).toHaveBeenCalled();
+    expect(spyfindFoodFn).toHaveBeenCalledWith('1a', expect.any(Array));
   });
 
   test('should update price when called', () => {
@@ -39,38 +47,16 @@ describe('test addToCartTest method', () => {
     expect(spyUpdateTotalFn).toHaveBeenCalledWith(mockEvent.price);
   });
 
-  test('shoud check if the updateCart has been called on true', () => {
-    const spyUpdateCart = jest.spyOn(updateCartModule, 'updateCart');
+  test('shoud check if the printFoodInCart has been called when item is not on cartArray', () => {
+    const spyPrintFoodInCart = jest.spyOn(updateCartModule, 'printFoodInCart');
 
-    addToCart(mockEvent, mockFoodData);
+    const mockArray = ['1b'];
 
-    expect(spyUpdateCart).toHaveBeenCalled();
-    expect(spyUpdateCart).toHaveBeenCalledWith(true, mockEvent);
+    addToCart(mockEvent, mockFoodData, mockArray);
 
+    expect(spyPrintFoodInCart).toHaveBeenCalled();
+    expect(spyPrintFoodInCart).toHaveBeenCalledWith(expect.any(Node), mockArray);
   });
-
-  // test('should send false if mockEvent does not exist', () => {
-  //   const spyUpdateCart = jest.spyOn(updateCartModule, 'updateCart');
-  //   const mockedElement = {
-  //     "id": "90ff",
-  //     "name": "Pizza",
-  //     price: 8.30,
-  //     "description": "Con todo el sabor de italia directo a tu casa",
-  //     "image": "https://www.africanbites.com/wp-content/uploads/2019/10/IMG_1636-2-500x500.jpg",
-  //     "ingredients": [
-  //       "base de trigo sarraceno",
-  //       "tomate",
-  //       "queso",
-  //       "albahaca",
-  //       "aceitunas"
-  //     ]
-  //   };
-
-  //   addToCart(mockedElement, mockFoodData);
-
-  //   expect(spyUpdateCart).toHaveBeenCalled();
-  //   expect(spyUpdateCart).toHaveBeenCalledWith(false, mockedElement);
-  // });
 });
 
 describe('findFoodInCart method', () => {
@@ -150,8 +136,9 @@ describe('updateCounter method', () => {
   });
 
   test('it removes element in cart if counter text is cero', () => {
-    updateCounterFood('1a', 'rest');
-    updateCounterFood('1a', 'rest');
+    const mockArr = ['1a'];
+    updateCounterFood('1a', 'rest', mockArr);
+    updateCounterFood('1a', 'rest', mockArr);
 
     const cartListItem = document.getElementById('1a');
 

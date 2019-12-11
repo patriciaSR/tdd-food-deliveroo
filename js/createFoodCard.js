@@ -1,4 +1,7 @@
 import { addToCart } from './addToCart.js';
+import { foodData} from './main.js';
+
+let cartData = [];
 
 function createNodeTag(tag, className, text, id, img) {
   const newTag = document.createElement(tag);
@@ -53,7 +56,9 @@ function createFoodCard(foodObj) {
   const newFoodPrice = createNodeTag('p', classNames.price, price);
   const newAddButton = createNodeTag('button', classNames.button, '+');
 
-  newAddButton.addEventListener('click', addToCart);
+  newAddButton.addEventListener('click', () => {
+    addToCart(event, foodData, cartData);
+  });
 
   ingredients.forEach((ingredient) => {
     const newIngredient = createNodeTag('li', classNames.ingredientsItem, ingredient);
@@ -66,4 +71,4 @@ function createFoodCard(foodObj) {
   return newCardContainer;
 }
 
-export { createFoodCard, createNodeTag };
+export { createFoodCard, createNodeTag, cartData };

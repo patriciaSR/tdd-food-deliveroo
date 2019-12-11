@@ -1,7 +1,5 @@
-const idArray = [];
-
-function findFoodInCart(idEvent, foodIdArray) {
-  return foodIdArray.includes(idEvent);
+function findFoodInCart(idEvent, cartArr) {
+  return cartArr.includes(idEvent);
 }
 
 export { findFoodInCart };
