@@ -1,7 +1,7 @@
 import { createFoodCard } from './createFoodCard.js';
 
-function createFoodList(arrFood) {
-  const newFoodCards = arrFood.map((food) => {
+function printFoodList(foods) {
+  const newFoodCards = foods.map((food) => {
     const newCard = createFoodCard(food);
     return newCard;
   });
@@ -11,4 +11,4 @@ function createFoodList(arrFood) {
   newFoodCards.forEach((card) => list.appendChild(card));
 }
 
-export { createFoodList };
+export { printFoodList };

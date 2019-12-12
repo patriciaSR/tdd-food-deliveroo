@@ -1,7 +1,7 @@
 'use strict';
 
 import { getFoodsData } from './getFoodsData.js';
-import { createFoodList } from './createFoodList.js';
+import { printFoodList } from './printFoodList.js';
 
 const ENDPOINT = 'js/service/foodData.json';
 
@@ -9,7 +9,7 @@ let foodData = [];
 
 getFoodsData(ENDPOINT)
   .then((data) => {
-    createFoodList(data);
+    printFoodList(data);
     foodData = data;
   });
 
