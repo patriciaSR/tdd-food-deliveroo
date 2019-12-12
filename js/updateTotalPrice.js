@@ -1,4 +1,4 @@
-function updateTotal(price, cart, action) {
+function updateTotalPrice(price, cart, action) {
   const IVA = 0.21;
   if (typeof price === 'number') {
     if (action === 'sum') {
@@ -15,4 +15,4 @@ function updateTotal(price, cart, action) {
   }
 }
 
-export { updateTotal };
+export { updateTotalPrice };

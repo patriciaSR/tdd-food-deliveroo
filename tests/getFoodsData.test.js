@@ -37,6 +37,5 @@ describe('testing api', () => {
     const result = await getFoodsData(ENDPOINT);
 
     expect(result).toEqual(mockFoodData);
-
   });
 });

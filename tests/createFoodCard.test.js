@@ -32,7 +32,7 @@ describe('test createFoodCard meth', () => {
     expect(newButton.tagName).toBe('BUTTON');
   });
 
-  test('don\'t create card if the object is not provided', () => {
+  test('it doesn\'t create card if the object is not provided', () => {
     expect(() => {
       createFoodCard();
     }).toThrow();

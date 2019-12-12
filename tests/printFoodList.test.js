@@ -2,18 +2,18 @@ import { printFoodList } from '../js/printFoodList.js';
 import { mockFoodData } from './fixtures/mockFoodData.js';
 
 describe('test printFoodList method', () => {
-  test('it adds <li> to ul list', () => {
+  test('it adds new <li> to the list', () => {
     document.body.innerHTML = '<ul class="restaurant__food-list"></ul>';
 
-    const arrFood = mockFoodData;
+    const foods = mockFoodData;
 
-    printFoodList(arrFood);
+    printFoodList(foods);
     const list = document.querySelector('ul');
 
-    expect(list.length).not.toBe(arrFood.length);
+    expect(list.length).not.toBe(foods.length);
   });
 
-  test('don\'t create new li without node argument', () => {
+  test('it doesn\'t create new <li> without node argument', () => {
     expect(() => {
       printFoodList();
     }).toThrow();
