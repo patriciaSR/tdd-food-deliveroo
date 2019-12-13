@@ -46,7 +46,6 @@ describe('test createFoodCard meth', () => {
 
     expect(spyAddToCart).toHaveBeenCalled();
     expect(spyAddToCart).toHaveBeenCalledWith(expect.any(Event), expect.any(Array), expect.any(Object));
-
   });
 
   test('it doesn\'t create card if the object is not provided', () => {
