@@ -1,5 +1,5 @@
 import { addToCart } from './addToCart.js';
-import { foodData} from './main.js';
+import { foodData } from './printFoodList.js';
 
 const cart = {
   products: [],
@@ -59,7 +59,7 @@ function createFoodCard(foodObj) {
   const newFoodPrice = createNodeTag('p', classNames.price, `${price}€`);
   const newAddButton = createNodeTag('button', classNames.button, '+');
 
-  newAddButton.addEventListener('click', () => {
+  newAddButton.addEventListener('click', (event) => {
     addToCart(event, foodData, cart);
   });
 

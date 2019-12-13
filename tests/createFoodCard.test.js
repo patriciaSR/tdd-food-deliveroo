@@ -1,9 +1,13 @@
 import { mockFoodData } from './fixtures/mockFoodData.js';
 import { createFoodCard } from '../js/createFoodCard.js';
 
+import * as addToCartModule from '../js/addToCart.js';
+
+
 describe('test createFoodCard meth', () => {
+  const foodObject = mockFoodData[0];
+
   test('it returns card with all the info', () => {
-    const foodObject = mockFoodData[0];
 
     const result = createFoodCard(foodObject);
 
@@ -32,7 +36,19 @@ describe('test createFoodCard meth', () => {
     expect(newButton.tagName).toBe('BUTTON');
   });
 
-  test('don\'t create card if the object is not provided', () => {
+  test('it adds an eventListener to addBtn', () => {
+    const spyAddToCart = jest.spyOn(addToCartModule, 'addToCart');
+
+    const result = createFoodCard(foodObject);
+    document.body.innerHTML = `<ol>${result}</ol>`;
+    const newButton = result.querySelector('.food__add-button');
+    newButton.click();
+
+    expect(spyAddToCart).toHaveBeenCalled();
+    expect(spyAddToCart).toHaveBeenCalledWith(expect.any(Event), expect.any(Array), expect.any(Object));
+  });
+
+  test('it doesn\'t create card if the object is not provided', () => {
     expect(() => {
       createFoodCard();
     }).toThrow();
