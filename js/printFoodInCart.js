@@ -6,7 +6,13 @@ import { updateCounterFood } from './updateCounterFood.js';
 function printFoodInCart(element, foodItem, cart) {
   const newCartElement = element.cloneNode(true);
   const addToCartBtn = newCartElement.querySelector('button');
+  const foodDescription = newCartElement.querySelector('.food__description');
+  const ingredients = newCartElement.querySelector('.food__ingredients-list');
+
   addToCartBtn.remove();
+  foodDescription.remove();
+  ingredients.remove();
+
 
   const newCounter = createNodeTag('p', 'food__counter', '1');
   const newAddBtn = createNodeTag('button', 'food__add-btn', '+');

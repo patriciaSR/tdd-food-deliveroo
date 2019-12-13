@@ -66,6 +66,7 @@ describe('test addToCart method', () => {
       price: 13.5,
     }];
     const spyPrintFoodInCart = jest.spyOn(printCartModule, 'printFoodInCart');
+    spyPrintFoodInCart.mockImplementation(() => {});
     const mockCart = {
       products: ['aaaa'],
       total: 0,

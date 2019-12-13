@@ -23,7 +23,15 @@ describe('printFoodInCart method', () => {
 
   const mockedListElement = document.createElement('li');
   const mockedBtnElement = document.createElement('button');
+  const mockedIngredientsList = document.createElement('ul');
+  mockedIngredientsList.classList.add('food__ingredients-list');
+  const mockedDescriptionElement = document.createElement('p');
+  mockedDescriptionElement.classList.add('food__description');
+
   mockedListElement.appendChild(mockedBtnElement);
+  mockedListElement.appendChild(mockedIngredientsList);
+  mockedListElement.appendChild(mockedDescriptionElement);
+
 
   test('it adds a <li> to <ol> cart list', () => {
     printFoodInCart(mockedListElement);
