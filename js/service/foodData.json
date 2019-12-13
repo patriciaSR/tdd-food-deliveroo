@@ -70,5 +70,19 @@
         "aceite",
         "sal"
     ]
+},
+{
+    "id": "d",
+    "name": "Tortilla",
+    "price": 6.30,
+    "description": "Tortilla de cebolla estilo tradicional",
+    "image":"https://www.cocinacaserayfacil.net/wp-content/uploads/2018/01/Tortilla-de-patatas-light.jpg",
+    "ingredients": [
+        "patatas",
+        "cebolla",
+        "huevo",
+        "aceite",
+        "sal"
+    ]
 }
 ]
