@@ -1,5 +1,5 @@
 import { addToCart } from './addToCart.js';
-import { foodData } from './main.js';
+import { foodData } from './printFoodList.js';
 
 const cart = {
   products: [],

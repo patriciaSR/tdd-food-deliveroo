@@ -39,4 +39,16 @@ describe('updateCounter method', () => {
 
     expect(cartListItem).toBe(null);
   });
+
+  test('it does nothing when the element is not in the cart', () => {
+    const id = 'lalala';
+    const mockCart = {
+      products: [id],
+      total: 0,
+    };
+
+    const result = updateCounterFood(id, 'sum', mockCart);
+
+    expect(result).toBe(undefined);
+  });
 });
