@@ -61,11 +61,10 @@
     "id": "d",
     "name": "Tortilla",
     "price": 6.30,
-    "description": "Tortilla de cebolla estilo tradicional",
+    "description": "Tortilla de estilo tradicional",
     "image":"https://www.cocinacaserayfacil.net/wp-content/uploads/2018/01/Tortilla-de-patatas-light.jpg",
     "ingredients": [
         "patatas",
-        "cebolla",
         "huevo",
         "aceite",
         "sal"
@@ -73,9 +72,9 @@
 },
 {
     "id": "d",
-    "name": "Tortilla",
-    "price": 6.30,
-    "description": "Tortilla de cebolla estilo tradicional",
+    "name": "Tortilla con cebolla",
+    "price": 6.50,
+    "description": "La tortilla de toda la vida, ¡ahora con cebolla!",
     "image":"https://www.cocinacaserayfacil.net/wp-content/uploads/2018/01/Tortilla-de-patatas-light.jpg",
     "ingredients": [
         "patatas",
