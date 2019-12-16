@@ -8,11 +8,11 @@ describe('testing api', () => {
     fetch.resetMocks();
   });
 
-  test('it calls foodData.json with the rigth url', () => {
+  test('it calls foodData.json with the rigth url', async () => {
     fetch.mockResponseOnce(JSON.stringify(mockFoodData));
 
     // assert on the response
-    getFoodsData(ENDPOINT);
+    await getFoodsData(ENDPOINT);
 
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(fetch).toHaveBeenCalledWith(ENDPOINT);
