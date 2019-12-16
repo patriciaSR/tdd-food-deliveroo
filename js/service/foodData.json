@@ -58,7 +58,7 @@
       ]
   },
   {
-    "id": "d",
+    "id": "e",
     "name": "Tortilla",
     "price": 6.30,
     "description": "Tortilla de estilo tradicional",
@@ -71,7 +71,7 @@
     ]
 },
 {
-    "id": "d",
+    "id": "f",
     "name": "Tortilla con cebolla",
     "price": 6.50,
     "description": "La tortilla de toda la vida, ¡ahora con cebolla!",
